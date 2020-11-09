@@ -9,6 +9,7 @@ import Foundation
 
 public class Storage {
     
+    // commit 
     private let defaults = UserDefaults.standard
     
     static let shared = Storage()
