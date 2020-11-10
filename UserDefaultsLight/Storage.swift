@@ -43,14 +43,14 @@ public class Storage {
     
     /// Update a value for special key
     ///
-    /// Parameter value: new value set instead old value for key
-    public func updateValue<T>(newValue: T, forKey key: String) {
+    /// Parameter value: set new value instead of old value for key
+    public func updateValue<T>(_ value: T, forKey key: String) {
         guard let oldData = UserDefaults.standard.object(forKey: key) as? Data,
               let decodedModel = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(oldData) as? T else {
             defaults.set(nil, forKey: key)
             return
         }
-        defaults.set(newValue, forKey: key)
+        defaults.set(value, forKey: key)
     }
     
     public func objectIsExist(forKey key: String) -> Bool {
