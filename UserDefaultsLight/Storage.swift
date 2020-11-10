@@ -14,29 +14,30 @@ public class Storage {
     
     public static let shared = Storage()
     
-    ///Hide archiving implementation and check key.
+    ///Save object from key and check key.
     public func setValue<T: Codable>(_ object: T, forKey key: String) {
-        if key != "" {
+        if isValid(fromKey: key) && isValueExists(forKey: key) {
             let data = try? PropertyListEncoder().encode(object)
             defaults.set(data, forKey: key)
+        } else {
+            print("Error, key is wrong or value exists")
         }
     }
-    ///Hide implementation unarchiving.
-    public func getValue<T: Codable>(_ object: T, forKey key: String) -> T? {
+    ///Get object from key.
+    public func getValue<T: Codable>(forKey key: String) -> T? {
         if let data = defaults.value(forKey: key) as? Data {
-            return try? PropertyListDecoder().decode(T.self, from: data)
+            return data as? T
         } else {
-            return object
+            return nil
         }
     }
     
     ///Check a value in the store.
-    public func objectIsExist(forKey key: String) -> Bool {
-            let flag = defaults.object(forKey: key) != nil ? true : false
-            return flag
+    public func isValueExists(forKey key: String) -> Bool {
+            return defaults.object(forKey: key) != nil ? true : false
     }
     
-    ///Delete without instantiating user defaults.
+    ///Delete object without instantiating user defaults.
     public func removeValue(forKey key: String) {
         defaults.removeObject(forKey: key)
     }
@@ -51,6 +52,17 @@ public class Storage {
             return
         }
         defaults.set(object, forKey: key)
+    }
+    
+    ///Check for the presence of the symbol
+    private func isValid(fromKey key: String) -> Bool {
+        let wrongSymbols = [" ", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", ":", ";"]
+            for value in wrongSymbols {
+                if key.contains(value) {
+                    return false
+                }
+            }
+        return true
     }
  
 }
