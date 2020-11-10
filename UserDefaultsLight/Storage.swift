@@ -14,41 +14,43 @@ public class Storage {
     
     public static let shared = Storage()
     
-    /// Метод для установки значений codable. object принимает и возвращает. опсать параметры
-    public func setValue<T: Codable>(_ object: T, forKey: String) { // hide impementtion archiving
-        if let data = try? PropertyListEncoder().encode(object) {
-            defaults.set(data, forKey: forKey)
+    ///Hide archiving implementation and check key.
+    public func setValue<T: Codable>(_ object: T, forKey key: String) {
+        if key != "" {
+            let data = try? PropertyListEncoder().encode(object)
+            defaults.set(data, forKey: key)
         }
     }
-    
-    public func getValue<T: Codable>(_ object: T, forKey: String) -> T? { // hide implementation archiving
-        if let data = defaults.value(forKey: forKey) as? Data {
+    ///Hide implementation unarchiving.
+    public func getValue<T: Codable>(_ object: T, forKey key: String) -> T? {
+        if let data = defaults.value(forKey: key) as? Data {
             return try? PropertyListDecoder().decode(T.self, from: data)
         } else {
             return object
         }
     }
     
+    ///Check a value in the store.
     public func objectIsExist(forKey key: String) -> Bool {
-        let flag = defaults.object(forKey: key) != nil ? true : false // Chech the value for nil
-
-        return flag
-      }
+            let flag = defaults.object(forKey: key) != nil ? true : false
+            return flag
+    }
     
-    ///delete without instantiating user defaults
+    ///Delete without instantiating user defaults.
     public func removeValue(forKey key: String) {
         defaults.removeObject(forKey: key)
     }
     
     /// Update a value for special key
     ///
-    /// Parameter value: new value set instead old value for key
-    public func updateValue<T>(newValue: T, forKey key: String) {
+    /// Parameter value: new value set instead old value for key.
+    public func updateValue<T: Codable>(object: T, forKey key: String) {
         guard let oldData = UserDefaults.standard.object(forKey: key) as? Data,
-              let decodedModel = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(oldData) as? T else {
+              let decodedModel = try? PropertyListDecoder().decode(T.self, from: oldData) as? T else {
             defaults.set(nil, forKey: key)
             return
         }
-        defaults.set(newValue, forKey: key)
+        defaults.set(object, forKey: key)
     }
+ 
 }
