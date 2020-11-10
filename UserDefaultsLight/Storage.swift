@@ -43,6 +43,7 @@ public class Storage {
     
     /// Update a value for special key
     ///
+
     /// Parameter value: new value set instead old value for key.
     public func updateValue<T: Codable>(object: T, forKey key: String) {
         guard let oldData = UserDefaults.standard.object(forKey: key) as? Data,
@@ -52,5 +53,4 @@ public class Storage {
         }
         defaults.set(object, forKey: key)
     }
- 
 }
