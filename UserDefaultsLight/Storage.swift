@@ -7,38 +7,37 @@
 
 import Foundation
 
+
 public class Storage {
     
-    // Не совсем понятно, что значит коммит
-    // commit 
     private let defaults = UserDefaults.standard
     
-    static let shared = Storage()
+    public static let shared = Storage()
     
-    // Почему в методе Set используется название для объекта Object, а для метода Get - model?
-    // Почему справа от открывающей скобки идёт комментарий? Как по
-    // мне лучше писать так:
-    // hide impementtion archiving
-    
-    public func setValue<T>(object: T, key: String) { // hide impementtion archiving
-        
-        // Не совсем понятно нейминг переменной savedData, логичнее использовать archivedData
-        if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: object, requiringSecureCoding: false) {
-            print("value was added to key")
-            defaults.set(savedData, forKey: key)
-        } else {
-            defaults.removeObject(forKey: key)
+    /// Метод для установки значений codable. object принимает и возвращает. опсать параметры
+    public func setValue<T: Codable>(_ object: T, forKey: String) { // hide impementtion archiving
+        if let data = try? PropertyListEncoder().encode(object) {
+            defaults.set(data, forKey: forKey)
         }
     }
     
-    public func getValue<T>(model: T, key: String) -> T? { // hide impementtion archiving
-        // Когда идёт конструкция guard лучше всё таки писать вот так:
-//        guard let savedData = UserDefaults.standard.object(forKey: key) as? Data,
-//              let decodedModel = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedData) as? T else {
-//            return nil
-//        }
-        guard let savedData = UserDefaults.standard.object(forKey: key) as? Data, let decodedModel = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedData) as? T else { return nil }
-        return decodedModel
+    public func getValue<T: Codable>(_ object: T, forKey: String) -> T? { // hide implementation archiving
+        if let data = defaults.value(forKey: forKey) as? Data {
+            return try? PropertyListDecoder().decode(T.self, from: data)
+        } else {
+            return object
+        }
+    }
+    
+    public func objectIsExist(forKey key: String) -> Bool {
+        let flag = defaults.object(forKey: key) != nil ? true : false // Chech the value for nil
+
+        return flag
+      }
+    
+    ///delete without instantiating user defaults
+    public func removeValue(forKey key: String) {
+        defaults.removeObject(forKey: key)
     }
     
     /// Update a value for special key
@@ -52,9 +51,4 @@ public class Storage {
         }
         defaults.set(newValue, forKey: key)
     }
-    
-    public func objectIsExist(forKey key: String) -> Bool {
-        let flag = defaults.object(forKey: key) != nil ? true : false // Chech the value for nil
-        return flag
-      }
 }
