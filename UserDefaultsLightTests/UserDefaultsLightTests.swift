@@ -8,30 +8,6 @@
 import XCTest
 @testable import UserDefaultsLight
 
-class UserDefaultsLightTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
-}
-
 struct UserMock: Codable {
     let name: String?
     let url: String?
@@ -46,8 +22,8 @@ struct UserMock: Codable {
     }
 }
 
-class UserStorageTests: XCTestCase {
-    
+class UserDefaultsLightTests: XCTestCase {
+
     // MARK: - Properties
     
     var user = UserMock(name: "Peter",
@@ -60,11 +36,6 @@ class UserStorageTests: XCTestCase {
                           pictureUrl: "myprofile/img01.jpg")
     let key = "InfiniteKey"
     
-    // MARK: - Helpers
-    
-    func makeSUT() -> Storage {
-        return Storage.shared
-    }
     
     // MARK: - Test functions
     
@@ -73,41 +44,39 @@ class UserStorageTests: XCTestCase {
     }
     
     func testSetValue() {
-        makeSUT().setValue(user, forKey: key)
-        guard let object: UserMock = makeSUT().getValue(forKey: key) else {
+        Storage.shared.setValue(user, forKey: key)
+        guard let object: UserMock = Storage.shared.getValue(forKey: key) else {
             return
         }
         XCTAssertNotNil(object)
     }
     
     func testGetValue() {
-        guard let object: UserMock = makeSUT().getValue(forKey: key) else {
+        guard let object: UserMock = Storage.shared.getValue(forKey: key) else {
             return
         }
         XCTAssertNil(object)
     }
     
     func testUpdateValue() {
-        makeSUT().setValue(user, forKey: key)
-        guard let object1: UserMock = makeSUT().getValue(forKey: key) else {
+        Storage.shared.setValue(user, forKey: key)
+        guard let object1: UserMock = Storage.shared.getValue(forKey: key) else {
             return
         }
-        makeSUT().updateValue(object: user2, forKey: key)
-        guard let object2: UserMock = makeSUT().getValue(forKey: key) else {
+        Storage.shared.updateValue(object: user2, forKey: key)
+        guard let object2: UserMock = Storage.shared.getValue(forKey: key) else {
             return
         }
         XCTAssertNotEqual(object1.name, object2.name)
     }
     
     func testDeleteObject() {
-        makeSUT().setValue(user, forKey: key)
-        makeSUT().removeValue(forKey: key)
-        guard let object: UserMock = makeSUT().getValue(forKey: key) else {
+        Storage.shared.setValue(user, forKey: key)
+        Storage.shared.removeValue(forKey: key)
+        guard let object: UserMock = Storage.shared.getValue(forKey: key) else {
             return
         }
         XCTAssertNil(object)
     }
-    
-    
 
 }
