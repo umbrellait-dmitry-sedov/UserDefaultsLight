@@ -3,19 +3,34 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		38439D932559461B00DA77D7 /* UserDefaultsLight.h in Headers */ = {isa = PBXBuildFile; fileRef = 38439D912559461B00DA77D7 /* UserDefaultsLight.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38439DC325594F3500DA77D7 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38439DC225594F3500DA77D7 /* Storage.swift */; };
+		4A59EE8C255AD43B0033AE80 /* UserDefaultsLightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A59EE8B255AD43B0033AE80 /* UserDefaultsLightTests.swift */; };
+		4A59EE8E255AD43B0033AE80 /* UserDefaultsLight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38439D8E2559461B00DA77D7 /* UserDefaultsLight.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4A59EE8F255AD43B0033AE80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38439D852559461B00DA77D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38439D8D2559461B00DA77D7;
+			remoteInfo = UserDefaultsLight;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		38439D8E2559461B00DA77D7 /* UserDefaultsLight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UserDefaultsLight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38439D912559461B00DA77D7 /* UserDefaultsLight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefaultsLight.h; sourceTree = "<group>"; };
 		38439D922559461B00DA77D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38439DC225594F3500DA77D7 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		4A59EE89255AD43B0033AE80 /* UserDefaultsLightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UserDefaultsLightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A59EE8B255AD43B0033AE80 /* UserDefaultsLightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsLightTests.swift; sourceTree = "<group>"; };
+		4A59EE8D255AD43B0033AE80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +41,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4A59EE86255AD43B0033AE80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A59EE8E255AD43B0033AE80 /* UserDefaultsLight.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				38439D902559461B00DA77D7 /* UserDefaultsLight */,
+				4A59EE8A255AD43B0033AE80 /* UserDefaultsLightTests */,
 				38439D8F2559461B00DA77D7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				38439D8E2559461B00DA77D7 /* UserDefaultsLight.framework */,
+				4A59EE89255AD43B0033AE80 /* UserDefaultsLightTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -53,6 +78,15 @@
 				38439D922559461B00DA77D7 /* Info.plist */,
 			);
 			path = UserDefaultsLight;
+			sourceTree = "<group>";
+		};
+		4A59EE8A255AD43B0033AE80 /* UserDefaultsLightTests */ = {
+			isa = PBXGroup;
+			children = (
+				4A59EE8B255AD43B0033AE80 /* UserDefaultsLightTests.swift */,
+				4A59EE8D255AD43B0033AE80 /* Info.plist */,
+			);
+			path = UserDefaultsLightTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,17 +121,39 @@
 			productReference = 38439D8E2559461B00DA77D7 /* UserDefaultsLight.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		4A59EE88255AD43B0033AE80 /* UserDefaultsLightTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A59EE93255AD43B0033AE80 /* Build configuration list for PBXNativeTarget "UserDefaultsLightTests" */;
+			buildPhases = (
+				4A59EE85255AD43B0033AE80 /* Sources */,
+				4A59EE86255AD43B0033AE80 /* Frameworks */,
+				4A59EE87255AD43B0033AE80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4A59EE90255AD43B0033AE80 /* PBXTargetDependency */,
+			);
+			name = UserDefaultsLightTests;
+			productName = UserDefaultsLightTests;
+			productReference = 4A59EE89255AD43B0033AE80 /* UserDefaultsLightTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		38439D852559461B00DA77D7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1210;
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					38439D8D2559461B00DA77D7 = {
 						CreatedOnToolsVersion = 12.1;
 						LastSwiftMigration = 1210;
+					};
+					4A59EE88255AD43B0033AE80 = {
+						CreatedOnToolsVersion = 12.1;
 					};
 				};
 			};
@@ -115,12 +171,20 @@
 			projectRoot = "";
 			targets = (
 				38439D8D2559461B00DA77D7 /* UserDefaultsLight */,
+				4A59EE88255AD43B0033AE80 /* UserDefaultsLightTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		38439D8C2559461B00DA77D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A59EE87255AD43B0033AE80 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -138,7 +202,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4A59EE85255AD43B0033AE80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A59EE8C255AD43B0033AE80 /* UserDefaultsLightTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4A59EE90255AD43B0033AE80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 38439D8D2559461B00DA77D7 /* UserDefaultsLight */;
+			targetProxy = 4A59EE8F255AD43B0033AE80 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		38439D942559461B00DA77D7 /* Debug */ = {
@@ -193,7 +274,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -251,7 +332,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -269,7 +350,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = K5PJHH34LF;
+				DEVELOPMENT_TEAM = HDBM336456;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -281,9 +362,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.umbrellait.UserDefaultsLight;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -296,7 +379,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = K5PJHH34LF;
+				DEVELOPMENT_TEAM = HDBM336456;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -308,9 +391,47 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.umbrellait.UserDefaultsLight;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4A59EE91255AD43B0033AE80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = UserDefaultsLightTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.viktor-rezvantsev.UserDefaultsLightTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4A59EE92255AD43B0033AE80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = UserDefaultsLightTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.viktor-rezvantsev.UserDefaultsLightTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -333,6 +454,15 @@
 			buildConfigurations = (
 				38439D972559461B00DA77D7 /* Debug */,
 				38439D982559461B00DA77D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A59EE93255AD43B0033AE80 /* Build configuration list for PBXNativeTarget "UserDefaultsLightTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A59EE91255AD43B0033AE80 /* Debug */,
+				4A59EE92255AD43B0033AE80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
