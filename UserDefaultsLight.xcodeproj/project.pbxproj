@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		38439D932559461B00DA77D7 /* UserDefaultsLight.h in Headers */ = {isa = PBXBuildFile; fileRef = 38439D912559461B00DA77D7 /* UserDefaultsLight.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38439DC325594F3500DA77D7 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38439DC225594F3500DA77D7 /* Storage.swift */; };
+		38439DC325594F3500DA77D7 /* UDLStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38439DC225594F3500DA77D7 /* UDLStorage.swift */; };
 		4A59EE8C255AD43B0033AE80 /* UserDefaultsLightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A59EE8B255AD43B0033AE80 /* UserDefaultsLightTests.swift */; };
 		4A59EE8E255AD43B0033AE80 /* UserDefaultsLight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38439D8E2559461B00DA77D7 /* UserDefaultsLight.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
@@ -27,7 +27,7 @@
 		38439D8E2559461B00DA77D7 /* UserDefaultsLight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UserDefaultsLight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38439D912559461B00DA77D7 /* UserDefaultsLight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefaultsLight.h; sourceTree = "<group>"; };
 		38439D922559461B00DA77D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38439DC225594F3500DA77D7 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		38439DC225594F3500DA77D7 /* UDLStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDLStorage.swift; sourceTree = "<group>"; };
 		4A59EE89255AD43B0033AE80 /* UserDefaultsLightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UserDefaultsLightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A59EE8B255AD43B0033AE80 /* UserDefaultsLightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsLightTests.swift; sourceTree = "<group>"; };
 		4A59EE8D255AD43B0033AE80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				38439D912559461B00DA77D7 /* UserDefaultsLight.h */,
-				38439DC225594F3500DA77D7 /* Storage.swift */,
+				38439DC225594F3500DA77D7 /* UDLStorage.swift */,
 				38439D922559461B00DA77D7 /* Info.plist */,
 			);
 			path = UserDefaultsLight;
@@ -198,7 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38439DC325594F3500DA77D7 /* Storage.swift in Sources */,
+				38439DC325594F3500DA77D7 /* UDLStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
