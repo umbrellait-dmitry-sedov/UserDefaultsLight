@@ -40,40 +40,40 @@ class UserDefaultsLightTests: XCTestCase {
     // MARK: - Test functions
     
     func testValidKey() {
-        XCTAssertFalse(Storage.shared.isValueExists(forKey: "user"))
+        XCTAssertFalse(UDLStorage.shared.isValueExists(forKey: "user"))
     }
     
     func testSetValue() {
-        Storage.shared.setValue(user, forKey: key)
-        guard let object: UserMock = Storage.shared.getValue(forKey: key) else {
+        UDLStorage.shared.setValue(user, forKey: key)
+        guard let object: UserMock = UDLStorage.shared.getValue(forKey: key) else {
             return
         }
         XCTAssertNotNil(object)
     }
     
     func testGetValue() {
-        guard let object: UserMock = Storage.shared.getValue(forKey: key) else {
+        guard let object: UserMock = UDLStorage.shared.getValue(forKey: key) else {
             return
         }
         XCTAssertNil(object)
     }
     
     func testUpdateValue() {
-        Storage.shared.setValue(user, forKey: key)
-        guard let object1: UserMock = Storage.shared.getValue(forKey: key) else {
+        UDLStorage.shared.setValue(user, forKey: key)
+        guard let object1: UserMock = UDLStorage.shared.getValue(forKey: key) else {
             return
         }
-        Storage.shared.updateValue(object: user2, forKey: key)
-        guard let object2: UserMock = Storage.shared.getValue(forKey: key) else {
+        UDLStorage.shared.updateValue(object: user2, forKey: key)
+        guard let object2: UserMock = UDLStorage.shared.getValue(forKey: key) else {
             return
         }
         XCTAssertNotEqual(object1.name, object2.name)
     }
     
     func testDeleteObject() {
-        Storage.shared.setValue(user, forKey: key)
-        Storage.shared.removeValue(forKey: key)
-        guard let object: UserMock = Storage.shared.getValue(forKey: key) else {
+        UDLStorage.shared.setValue(user, forKey: key)
+        UDLStorage.shared.removeValue(forKey: key)
+        guard let object: UserMock = UDLStorage.shared.getValue(forKey: key) else {
             return
         }
         XCTAssertNil(object)

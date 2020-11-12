@@ -8,13 +8,13 @@
 import Foundation
 
 
-public class Storage {
+final public class UDLStorage {
     
     private let defaults = UserDefaults.standard
     
-    public static let shared = Storage()
+    public static let shared = UDLStorage()
     
-    ///Save object from key and check key.
+    ///Save the object by key and validate it.
     public func setValue<T: Codable>(_ object: T, forKey key: String) {
         if isValid(fromKey: key) && isValueExists(forKey: key) {
             let data = try? PropertyListEncoder().encode(object)
@@ -23,7 +23,7 @@ public class Storage {
             print("Error, key is wrong or value exists")
         }
     }
-    ///Get object from key.
+    ///Issue an object by key and return the type T for further conversion to the desired type.
     public func getValue<T: Codable>(forKey key: String) -> T? {
         if let data = defaults.value(forKey: key) as? Data {
             return data as? T
@@ -32,20 +32,17 @@ public class Storage {
         }
     }
     
-    ///Check a value in the store.
+    ///If there is a value by key, it returns true
     public func isValueExists(forKey key: String) -> Bool {
             return defaults.object(forKey: key) != nil ? true : false
     }
     
-    ///Delete object without instantiating user defaults.
+    ///Remove the object by key.
     public func removeValue(forKey key: String) {
         defaults.removeObject(forKey: key)
     }
     
-    /// Update a value for special key
-    ///
-
-    /// Parameter value: new value set instead old value for key.
+    ///Update a value for special key
     public func updateValue<T: Codable>(object: T, forKey key: String) {
         guard let oldData = UserDefaults.standard.object(forKey: key) as? Data,
               let decodedModel = try? PropertyListDecoder().decode(T.self, from: oldData) as? T else {
@@ -55,7 +52,7 @@ public class Storage {
         defaults.set(object, forKey: key)
     }
     
-    ///Check for the presence of the symbol
+    ///Check for the presence of the symbol, if key is valid return true
     private func isValid(fromKey key: String) -> Bool {
         let wrongSymbols = [" ", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", ":", ";"]
             for value in wrongSymbols {
@@ -65,5 +62,4 @@ public class Storage {
             }
         return true
     }
- 
 }
