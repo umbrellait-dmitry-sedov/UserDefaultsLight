@@ -34,13 +34,13 @@ class UserDefaultsLightTests: XCTestCase {
                           url: "www.ru-ru",
                           age: 25,
                           pictureUrl: "myprofile/img01.jpg")
-    let key = "InfiniteKey"
+    let key = UDLKey(name: "InfiniteKey", type: UserMock.self)
     
     
     // MARK: - Test functions
     
     func testValidKey() {
-        XCTAssertFalse(UDLStorage.shared.isValueExists(forKey: "user"))
+        XCTAssertFalse(UDLStorage.shared.isValueExists(forKey: key))
     }
     
     func testSetValue() {
