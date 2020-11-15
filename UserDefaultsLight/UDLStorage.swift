@@ -16,15 +16,12 @@ final public class UDLStorage {
     
     ///Save the object by key and validate it.
     public func setValue<T: Codable>(_ object: T, forKey key: UDLKey<T>) {
-        if isValid(fromKey: key.name) && isValueExists(forKey: key) {
-            let data = try? PropertyListEncoder().encode(object)
-            defaults.set(data, forKey: key.name)
-        } else {
-            print("Error, key is wrong or value exists")
-        }
+        let data = try? PropertyListEncoder().encode(object)
+        defaults.set(data, forKey: key.name)
     }
+    
     ///Issue an object by key and return the type T for further conversion to the desired type.
-    public func getValue<T: Codable>(forKey key: UDLKey<T>) -> T? where T : Decodable {
+    public func getValue<T: Codable>(forKey key: UDLKey<T>) -> T? {
         if let data = defaults.data(forKey: key.name) {
             let value = try? PropertyListDecoder().decode(key.type, from: data)
             return value
@@ -33,34 +30,35 @@ final public class UDLStorage {
         }
     }
     
-    ///If there is a value by key, it returns true
-    public func isValueExists<T: Codable>(forKey key: UDLKey<T>) -> Bool {
-        return defaults.object(forKey: key.name) != nil ? true : false
-    }
-    
     ///Remove the object by key.
     public func removeValue<T: Codable>(forKey key: UDLKey<T>) {
         defaults.removeObject(forKey: key.name)
     }
     
-    ///Update a value for special key
-    public func updateValue<T: Codable>(object: T, forKey key: UDLKey<T>) {
-        guard let oldData = UserDefaults.standard.object(forKey: key.name) as? Data,
+    /// If there is a value by key, it's replaces the new value
+    /// or add value to new key
+    public func isValueExists<T: Codable>(object: T, forKey key: UDLKey<T>) {
+        guard let oldData = defaults.object(forKey: key.name) as? Data,
               let _ = try? PropertyListDecoder().decode(T.self, from: oldData) else {
-            defaults.set(nil, forKey: key.name)
             return
         }
-        defaults.set(object, forKey: key.name)
+        let data = try? PropertyListEncoder().encode(object)
+        defaults.set(data, forKey: key.name)
     }
     
-    ///Check for the presence of the symbol, if key is valid return true
-    private func isValid(fromKey key: String) -> Bool {
-        let wrongSymbols = [" ", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", ":", ";"]
-            for value in wrongSymbols {
-                if key.contains(value) {
-                    return false
-                }
-            }
-        return true
+    /// Remove all values for all keys
+    public func removeAllValues() {
+        guard let domain = Bundle.main.bundleIdentifier else {
+            return
+        }
+        defaults.removePersistentDomain(forName: domain)
+        defaults.synchronize()
     }
+    /// Version 2
+//    public func removeAllValues() {
+//        let dictionary = defaults.dictionaryRepresentation()
+//        dictionary.keys.forEach { key in
+//            defaults.removeObject(forKey: key)
+//        }
+//    }
 }
