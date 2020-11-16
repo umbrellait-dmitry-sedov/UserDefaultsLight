@@ -35,15 +35,9 @@ final public class UDLStorage {
         defaults.removeObject(forKey: key.name)
     }
     
-    /// If there is a value by key, it's replaces the new value
-    /// or add value to new key
-    public func isValueExists<T: Codable>(object: T, forKey key: UDLKey<T>) {
-        guard let oldData = defaults.object(forKey: key.name) as? Data,
-              let _ = try? PropertyListDecoder().decode(T.self, from: oldData) else {
-            return
-        }
-        let data = try? PropertyListEncoder().encode(object)
-        defaults.set(data, forKey: key.name)
+    /// If there is a value by key, it returns true
+    public func isValueExists<T: Codable>(forKey key: UDLKey<T>) -> Bool {
+        return defaults.object(forKey: key.name) != nil ? true : false
     }
     
     /// Remove all values for all keys
@@ -54,11 +48,4 @@ final public class UDLStorage {
         defaults.removePersistentDomain(forName: domain)
         defaults.synchronize()
     }
-    /// Version 2
-//    public func removeAllValues() {
-//        let dictionary = defaults.dictionaryRepresentation()
-//        dictionary.keys.forEach { key in
-//            defaults.removeObject(forKey: key)
-//        }
-//    }
 }
