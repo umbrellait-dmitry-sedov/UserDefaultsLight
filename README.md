@@ -1,6 +1,6 @@
 # UserDefaultsLight
 
-Version 1.1.0
+Version 1.2.0
 
 **Installation**: 
 
@@ -15,7 +15,7 @@ pod init
 ```
 If you're using CocoaPods, just add this line to your Podfile:
 ```html
-pod 'UserDefaultsLight', :git => 'https://github.com/umbrellait-dmitry-sedov/UserDefaultsLights', :tag => '1.0.0'
+pod 'UserDefaultsLight', :git => 'https://github.com/umbrellait-dmitry-sedov/UserDefaultsLights', :tag => '1.2.0'
 ```
 Install by running this command in your terminal:
 ```html
