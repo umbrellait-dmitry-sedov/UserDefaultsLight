@@ -11,6 +11,7 @@
 		38439DC325594F3500DA77D7 /* UDLStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38439DC225594F3500DA77D7 /* UDLStorage.swift */; };
 		4A59EE8C255AD43B0033AE80 /* UserDefaultsLightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A59EE8B255AD43B0033AE80 /* UserDefaultsLightTests.swift */; };
 		4A59EE8E255AD43B0033AE80 /* UserDefaultsLight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38439D8E2559461B00DA77D7 /* UserDefaultsLight.framework */; platformFilter = ios; };
+		4ACA5460255E9C5C001841A2 /* UDLKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA545F255E9C5C001841A2 /* UDLKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		4A59EE89255AD43B0033AE80 /* UserDefaultsLightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UserDefaultsLightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A59EE8B255AD43B0033AE80 /* UserDefaultsLightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsLightTests.swift; sourceTree = "<group>"; };
 		4A59EE8D255AD43B0033AE80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4ACA545F255E9C5C001841A2 /* UDLKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDLKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 			children = (
 				38439D912559461B00DA77D7 /* UserDefaultsLight.h */,
 				38439DC225594F3500DA77D7 /* UDLStorage.swift */,
+				4ACA545F255E9C5C001841A2 /* UDLKey.swift */,
 				38439D922559461B00DA77D7 /* Info.plist */,
 			);
 			path = UserDefaultsLight;
@@ -198,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ACA5460255E9C5C001841A2 /* UDLKey.swift in Sources */,
 				38439DC325594F3500DA77D7 /* UDLStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

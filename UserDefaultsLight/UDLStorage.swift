@@ -15,51 +15,37 @@ final public class UDLStorage {
     public static let shared = UDLStorage()
     
     ///Save the object by key and validate it.
-    public func setValue<T: Codable>(_ object: T, forKey key: String) {
-        if isValid(fromKey: key) && isValueExists(forKey: key) {
-            let data = try? PropertyListEncoder().encode(object)
-            defaults.set(data, forKey: key)
-        } else {
-            print("Error, key is wrong or value exists")
-        }
+    public func setValue<T: Codable>(_ object: T, forKey key: UDLKey<T>) {
+        let data = try? PropertyListEncoder().encode(object)
+        defaults.set(data, forKey: key.name)
     }
+    
     ///Issue an object by key and return the type T for further conversion to the desired type.
-    public func getValue<T: Codable>(forKey key: String) -> T? {
-        if let data = defaults.value(forKey: key) as? Data {
-            return data as? T
+    public func getValue<T: Codable>(forKey key: UDLKey<T>) -> T? {
+        if let data = defaults.data(forKey: key.name) {
+            let value = try? PropertyListDecoder().decode(key.type, from: data)
+            return value
         } else {
             return nil
         }
     }
     
-    ///If there is a value by key, it returns true
-    public func isValueExists(forKey key: String) -> Bool {
-            return defaults.object(forKey: key) != nil ? true : false
-    }
-    
     ///Remove the object by key.
-    public func removeValue(forKey key: String) {
-        defaults.removeObject(forKey: key)
+    public func removeValue<T: Codable>(forKey key: UDLKey<T>) {
+        defaults.removeObject(forKey: key.name)
     }
     
-    ///Update a value for special key
-    public func updateValue<T: Codable>(object: T, forKey key: String) {
-        guard let oldData = UserDefaults.standard.object(forKey: key) as? Data,
-              let decodedModel = try? PropertyListDecoder().decode(T.self, from: oldData) as? T else {
-            defaults.set(nil, forKey: key)
+    /// If there is a value by key, it returns true
+    public func isValueExists<T: Codable>(forKey key: UDLKey<T>) -> Bool {
+        return defaults.object(forKey: key.name) != nil ? true : false
+    }
+    
+    /// Remove all values for all keys
+    public func removeAllValues() {
+        guard let domain = Bundle.main.bundleIdentifier else {
             return
         }
-        defaults.set(object, forKey: key)
-    }
-    
-    ///Check for the presence of the symbol, if key is valid return true
-    private func isValid(fromKey key: String) -> Bool {
-        let wrongSymbols = [" ", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", ":", ";"]
-            for value in wrongSymbols {
-                if key.contains(value) {
-                    return false
-                }
-            }
-        return true
+        defaults.removePersistentDomain(forName: domain)
+        defaults.synchronize()
     }
 }

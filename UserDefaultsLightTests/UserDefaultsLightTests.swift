@@ -34,49 +34,48 @@ class UserDefaultsLightTests: XCTestCase {
                           url: "www.ru-ru",
                           age: 25,
                           pictureUrl: "myprofile/img01.jpg")
-    let key = "InfiniteKey"
+    let key = UDLKey(name: "infiniteKey", type: UserMock.self)
+    let keyForUser2 = UDLKey(name: "User2Key", type: UserMock.self)
     
     
     // MARK: - Test functions
     
     func testValidKey() {
-        XCTAssertFalse(UDLStorage.shared.isValueExists(forKey: "user"))
+        XCTAssertFalse(UDLStorage.shared.isValueExists(forKey: keyForUser2))
+        XCTAssertFalse(UDLStorage.shared.isValueExists(forKey: key))
     }
     
     func testSetValue() {
         UDLStorage.shared.setValue(user, forKey: key)
-        guard let object: UserMock = UDLStorage.shared.getValue(forKey: key) else {
-            return
-        }
+        let object: UserMock? = UDLStorage.shared.getValue(forKey: key)
         XCTAssertNotNil(object)
     }
     
     func testGetValue() {
-        guard let object: UserMock = UDLStorage.shared.getValue(forKey: key) else {
-            return
-        }
+        let object: UserMock? = UDLStorage.shared.getValue(forKey: key)
         XCTAssertNil(object)
     }
-    
-    func testUpdateValue() {
-        UDLStorage.shared.setValue(user, forKey: key)
-        guard let object1: UserMock = UDLStorage.shared.getValue(forKey: key) else {
-            return
-        }
-        UDLStorage.shared.updateValue(object: user2, forKey: key)
-        guard let object2: UserMock = UDLStorage.shared.getValue(forKey: key) else {
-            return
-        }
-        XCTAssertNotEqual(object1.name, object2.name)
-    }
-    
+        
     func testDeleteObject() {
         UDLStorage.shared.setValue(user, forKey: key)
         UDLStorage.shared.removeValue(forKey: key)
-        guard let object: UserMock = UDLStorage.shared.getValue(forKey: key) else {
-            return
-        }
+        let object: UserMock? = UDLStorage.shared.getValue(forKey: key)
         XCTAssertNil(object)
+    }
+    
+    func testRemoveAllObjects() {
+        UDLStorage.shared.setValue(user, forKey: key)
+        UDLStorage.shared.setValue(user2, forKey: keyForUser2)
+        UDLStorage.shared.removeAllValues()
+        let user: UserMock? = UDLStorage.shared.getValue(forKey: key)
+        let user2: UserMock? = UDLStorage.shared.getValue(forKey: keyForUser2)
+        XCTAssertNil(user)
+        XCTAssertNil(user2)
+    }
+    
+    override func setUp() {
+        UDLStorage.shared.removeValue(forKey: key)
+        UDLStorage.shared.removeValue(forKey: keyForUser2)
     }
 
 }
